@@ -1,16 +1,7 @@
-# bulkup-bulkup
+# 벌크업 벌크업 💪
 
-Bulkup, bulkup
+> 벌크업하고 물 마시기 v.s. 물 벌크업 벌크업 마시기
 
-## Getting Started
+트리플 2023 플러터 스터디에서 프로젝트로 만든 앱입니다.
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+나만의 헬스 일지를 적고 통계 화면에서 결과를 모아보세요.
