@@ -1,3 +1,4 @@
+import 'package:bulkup_bulkup/routes.dart';
 import 'package:flutter/material.dart';
 
 import 'ui/theme.dart';
@@ -11,11 +12,11 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: '벌크업 벌크업',
+      routes: Routes.build(),
       home: Scaffold(
         appBar: AppBar(
           title: const Text('벌크업 벌크업'),
@@ -82,9 +83,9 @@ class MyApp extends StatelessWidget {
                     Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [1, 2, 3, 4]
-                            .map((_) => Column(children: const [
-                                  DiaryBox(),
-                                  SizedBox(height: 20)
+                            .map((diaryId) => Column(children: [
+                                  DiaryBox(diaryId: diaryId.toString()),
+                                  const SizedBox(height: 20)
                                 ]))
                             .toList()),
                   ],
