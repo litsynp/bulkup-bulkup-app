@@ -2,6 +2,7 @@ import 'package:bulkup_bulkup/routes.dart';
 import 'package:flutter/material.dart';
 
 import 'ui/theme.dart';
+import 'widgets/app_bar.dart';
 import 'widgets/statistics_box.dart';
 import 'widgets/diary_box.dart';
 
@@ -18,10 +19,7 @@ class MyApp extends StatelessWidget {
       title: '벌크업 벌크업',
       routes: Routes.build(),
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('벌크업 벌크업'),
-          backgroundColor: Palette.primaryColor,
-        ),
+        appBar: CustomAppBar.build('벌크업 벌크업'),
         body: SingleChildScrollView(
           child: Container(
             padding: const EdgeInsets.all(20),

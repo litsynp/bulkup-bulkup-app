@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 
+import '../ui/solid_borders.dart';
 import '../ui/theme.dart';
 
 class DiaryBox extends StatelessWidget {
@@ -21,7 +22,7 @@ class DiaryBox extends StatelessWidget {
             height: 120,
             decoration: BoxDecoration(
               color: Palette.white,
-              border: _solidBorders(),
+              border: SolidBorders.build(),
               borderRadius: const BorderRadius.all(
                 Radius.circular(20),
               ),
@@ -37,7 +38,7 @@ class DiaryBox extends StatelessWidget {
                   height: 100,
                   decoration: BoxDecoration(
                     color: Palette.emptyGray,
-                    border: _solidBorders(),
+                    border: SolidBorders.build(),
                     borderRadius: const BorderRadius.all(
                       Radius.circular(20),
                     ),
@@ -47,27 +48,6 @@ class DiaryBox extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Border _solidBorders() {
-    return const Border(
-      top: BorderSide(
-        color: Palette.black,
-        width: 1,
-      ),
-      left: BorderSide(
-        color: Palette.black,
-        width: 1,
-      ),
-      right: BorderSide(
-        color: Palette.black,
-        width: 1,
-      ),
-      bottom: BorderSide(
-        color: Palette.black,
-        width: 1,
       ),
     );
   }

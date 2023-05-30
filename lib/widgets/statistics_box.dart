@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 
+import '../ui/solid_borders.dart';
 import '../ui/theme.dart';
 
 class StatisticsBox extends StatelessWidget {
@@ -14,34 +15,13 @@ class StatisticsBox extends StatelessWidget {
           height: 300,
           decoration: BoxDecoration(
             color: Palette.white,
-            border: _solidBorders(),
+            border: SolidBorders.build(),
             borderRadius: const BorderRadius.all(
               Radius.circular(20),
             ),
           ),
         ),
       ],
-    );
-  }
-
-  Border _solidBorders() {
-    return const Border(
-      top: BorderSide(
-        color: Palette.black,
-        width: 1,
-      ),
-      left: BorderSide(
-        color: Palette.black,
-        width: 1,
-      ),
-      right: BorderSide(
-        color: Palette.black,
-        width: 1,
-      ),
-      bottom: BorderSide(
-        color: Palette.black,
-        width: 1,
-      ),
     );
   }
 }
