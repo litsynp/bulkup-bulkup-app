@@ -1,4 +1,6 @@
+import 'package:bulkup_bulkup/models/diary_model.dart';
 import 'package:bulkup_bulkup/routes.dart';
+import 'package:bulkup_bulkup/services/diary_service.dart';
 import 'package:flutter/material.dart';
 
 import 'ui/theme.dart';
@@ -7,11 +9,23 @@ import 'widgets/statistics_box.dart';
 import 'widgets/diary_box.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+
+  final Future<List<Diary>> diaries = DiaryService.findDiaries();
+
+  ListView _buildDiaryList(AsyncSnapshot<List<Diary>> snapshot) {
+    return ListView.separated(
+      itemBuilder: (context, index) {
+        return DiaryBox(diary: snapshot.data![index]);
+      },
+      separatorBuilder: (context, index) => const SizedBox(height: 20),
+      itemCount: snapshot.data?.length ?? 0,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +34,9 @@ class MyApp extends StatelessWidget {
       routes: Routes.build(),
       home: Scaffold(
         appBar: CustomAppBar.build('벌크업 벌크업'),
-        body: SingleChildScrollView(
-          child: Container(
-            padding: const EdgeInsets.all(20),
+        body: Container(
+          padding: const EdgeInsets.all(20),
+          child: SingleChildScrollView(
             child: Column(
               children: [
                 Row(
@@ -78,14 +92,21 @@ class MyApp extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [1, 2, 3, 4]
-                            .map((diaryId) => Column(children: [
-                                  DiaryBox(diaryId: diaryId.toString()),
-                                  const SizedBox(height: 20)
-                                ]))
-                            .toList()),
+                    SizedBox(
+                      height: 500,
+                      child: FutureBuilder(
+                        future: diaries,
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            return _buildDiaryList(snapshot);
+                          }
+
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        },
+                      ),
+                    ),
                   ],
                 ),
               ],
