@@ -75,4 +75,21 @@ class DiaryService {
       throw Exception("Failed to delete diary");
     }
   }
+
+  static Future<List<DiaryStatItem>> findDiaryStats() async {
+    final url = Uri.parse("${Config.apiUrl}$diariesUri/stats");
+    final response = await http.get(url);
+
+    if (response.statusCode != 200) {
+      throw Exception("Failed to load diary stats");
+    }
+
+    final diaryStatsJson = jsonDecode(response.body);
+    List<DiaryStatItem> diaryStats = [];
+    for (var diaryStat in diaryStatsJson['diaries']) {
+      diaryStats.add(DiaryStatItem.fromJson(diaryStat));
+    }
+
+    return diaryStats;
+  }
 }

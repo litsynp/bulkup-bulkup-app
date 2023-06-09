@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
   MyApp({super.key});
 
   final Future<List<Diary>> diaries = DiaryService.findDiaries();
+  final Future<List<DiaryStatItem>> diaryStats = DiaryService.findDiaryStats();
 
   ListView _buildDiaryList(AsyncSnapshot<List<Diary>> snapshot) {
     return ListView.separated(
@@ -68,8 +69,22 @@ class MyApp extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 10),
-                    StatisticsChart(
-                      weeklyWeights: const [77, 76.7, 76.3, 76.4, 76, 75.9, 76],
+                    FutureBuilder(
+                      future: diaryStats,
+                      initialData: const [],
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return StatisticsChart(
+                            weeklyWeights: snapshot.data!
+                                .map<double>((e) => e.weight)
+                                .toList(),
+                          );
+                        }
+
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      },
                     ),
                   ],
                 ),
