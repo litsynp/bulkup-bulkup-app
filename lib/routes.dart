@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import 'screens/DiaryDetailScreen.dart';
+import 'screens/diary_detail_screen.dart';
 
 class Routes {
   static Map<String, Widget Function(BuildContext)> build() {
