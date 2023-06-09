@@ -52,3 +52,31 @@ class Diary {
     );
   }
 }
+
+class DiaryStatItem {
+  final int? id;
+  final DateTime createdAt;
+  final double weight;
+
+  DiaryStatItem({
+    this.id,
+    required this.createdAt,
+    required this.weight,
+  });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'createdAt': createdAt.toString(),
+      'weight': weight,
+    };
+  }
+
+  static DiaryStatItem fromJson(Map<String, dynamic> map) {
+    return DiaryStatItem(
+      id: map['id'],
+      createdAt: DateTime.parse(map['created_at']),
+      weight: map['weight'],
+    );
+  }
+}

@@ -1,11 +1,11 @@
 import 'package:bulkup_bulkup/models/diary_model.dart';
 import 'package:bulkup_bulkup/routes.dart';
 import 'package:bulkup_bulkup/services/diary_service.dart';
+import 'package:bulkup_bulkup/widgets/statistics_chart.dart';
 import 'package:flutter/material.dart';
 
 import 'ui/theme.dart';
 import 'widgets/app_bar.dart';
-import 'widgets/statistics_box.dart';
 import 'widgets/diary_box.dart';
 
 void main() {
@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
   MyApp({super.key});
 
   final Future<List<Diary>> diaries = DiaryService.findDiaries();
+  final Future<List<DiaryStatItem>> diaryStats = DiaryService.findDiaryStats();
 
   ListView _buildDiaryList(AsyncSnapshot<List<Diary>> snapshot) {
     return ListView.separated(
@@ -67,10 +68,24 @@ class MyApp extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(
-                      height: 10,
+                    const SizedBox(height: 10),
+                    FutureBuilder(
+                      future: diaryStats,
+                      initialData: const [],
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return StatisticsChart(
+                            weeklyWeights: snapshot.data!
+                                .map<double>((e) => e.weight)
+                                .toList(),
+                          );
+                        }
+
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      },
                     ),
-                    const StatisticsBox(),
                   ],
                 ),
                 const SizedBox(height: 30),
