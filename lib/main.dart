@@ -1,11 +1,11 @@
 import 'package:bulkup_bulkup/models/diary_model.dart';
 import 'package:bulkup_bulkup/routes.dart';
 import 'package:bulkup_bulkup/services/diary_service.dart';
+import 'package:bulkup_bulkup/widgets/statistics_chart.dart';
 import 'package:flutter/material.dart';
 
 import 'ui/theme.dart';
 import 'widgets/app_bar.dart';
-import 'widgets/statistics_box.dart';
 import 'widgets/diary_box.dart';
 
 void main() {
@@ -67,10 +67,10 @@ class MyApp extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(
-                      height: 10,
+                    const SizedBox(height: 10),
+                    StatisticsChart(
+                      weeklyWeights: const [77, 76.7, 76.3, 76.4, 76, 75.9, 76],
                     ),
-                    const StatisticsBox(),
                   ],
                 ),
                 const SizedBox(height: 30),
